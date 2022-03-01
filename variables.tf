@@ -7,7 +7,7 @@ variable "number_of_broker_nodes" {
 variable "kafka_version" {
   type        = string
   description = "The desired Kafka software version"
-  default = "2.6.2"
+  default = "2.8.1"
 }
 
 variable "broker_instance_type" {

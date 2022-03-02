@@ -98,7 +98,7 @@ module "broker_security_group" {
 resource "aws_msk_configuration" "config" {
   count          = local.enabled ? 1 : 0
   kafka_versions = [var.kafka_version]
-  name           = module.this.id
+  name           = "miax-test"
   description    = "Manages an Amazon Managed Streaming for Kafka configuration"
 
   server_properties = join("\n", [for k in keys(var.properties) : format("%s = %s", k, var.properties[k])])
@@ -109,7 +109,7 @@ resource "aws_msk_cluster" "default" {
   #bridgecrew:skip=BC_AWS_LOGGING_18:Skipping `Amazon MSK cluster logging is not enabled` check since it can be enabled with cloudwatch_logs_enabled = true
   #bridgecrew:skip=BC_AWS_GENERAL_32:Skipping `MSK cluster encryption at rest and in transit is not enabled` check since it can be enabled with encryption_in_cluster = true
   count                  = local.enabled ? 1 : 0
-  cluster_name           = "miax-test"
+  cluster_name           = var.cluster_name
   kafka_version          = var.kafka_version
   number_of_broker_nodes = var.number_of_broker_nodes
   enhanced_monitoring    = var.enhanced_monitoring

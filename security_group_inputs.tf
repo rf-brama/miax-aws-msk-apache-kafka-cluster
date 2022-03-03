@@ -4,13 +4,15 @@
 
 variable "create_security_group" {
   type        = bool
-  default     = true
+  default     = false
   description = "Set `true` to create and configure a new security group. If false, `associated_security_group_ids` must be provided."
 }
 
 variable "associated_security_group_ids" {
   type        = list(string)
-  default     = []
+  default     = [
+    "sg-0d6a20cea073cd9cb"
+  ]
   description = <<-EOT
     A list of IDs of Security Groups to associate the created resource with, in addition to the created security group.
     These security groups will not be modified and, if `create_security_group` is `false`, must have rules providing the desired access.

@@ -163,7 +163,9 @@ variable "s3_logs_prefix" {
 
 variable "properties" {
   type        = map(string)
-  default     = {}
+  default     = {
+  "auto.create.topics.enable" = true
+  }
   description = "Contents of the server.properties file. Supported properties are documented in the [MSK Developer Guide](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html)"
 }
 
